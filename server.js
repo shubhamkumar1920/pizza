@@ -5,8 +5,8 @@ const ejs = require('ejs')
 const path = require('path')
 const expressLayout = require('express-ejs-layouts')
 
-app.get('/', (req,res) => {
-    res.render('home')
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`)
 })
 
 // assets
@@ -16,6 +16,15 @@ app.use(expressLayout)
 app.set('views', path.join(__dirname, '/resources/views'))
 app.set('view engine','ejs')
 
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`)
+app.get('/', (req,res) => {
+    res.render('home')
+})
+app.get('/cart', (req,res) => {
+    res.render('customers/cart')
+})
+app.get('/login', (req,res) => {
+    res.render('auth/login')
+})
+app.get('/register', (req,res) => {
+    res.render('auth/register')
 })
